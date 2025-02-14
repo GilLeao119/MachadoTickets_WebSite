@@ -1,0 +1,352 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "Swagger demo for the item REST api demonstrated in class.",
+      "version": "1.0.0",
+      "title": "Swagger Item API",
+      "contact": {
+        "email": "fas@estg.ipp.pt"
+      }
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "Items",
+        "description": "Representation of our items"        
+      },
+      {
+        "name": "User",
+        "description": "Operations about user"
+      }
+    ],
+    "schemes": [ "http" ],
+    "paths": {
+      "/items": {
+        "get": {
+          "tags": [
+            "Items"
+          ],
+          "summary": "Gets all items",
+          "description": "Gets all items in the database",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Item List",
+              "schema": {
+                "$ref":"#/definitions/Items"
+              }
+            }
+          },
+          "security": [
+            {
+              "item_jwt_auth": [ ]
+            }
+          ]
+        }
+      },
+      "/items/create": {
+        "post": {
+          "tags": [
+            "Items"
+          ],
+          "summary": "Add a new item",
+          "description": "Adds a new item to the database",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Item object that needs to be added to the database",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Item"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Item Created",
+              "schema": {
+                "$ref":"#/definitions/Item"
+              }
+            },
+            "405": {
+              "description": "Invalid input"
+            }
+          },
+          "security": [
+            {
+              "item_jwt_auth": [ ]
+            }
+          ]
+        }
+      },
+      "/items/edit/{itemId}": {
+        "put": {
+          "tags": [
+            "Items"
+          ],
+          "summary": "Update an existing item",
+          "description": "Updates a valid item on the database. If it does note exist a new one will be created.",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/xml"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Item object that needs to be added to the database",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Item"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Item Updated",
+              "schema": {
+                "$ref":"#/definitions/Item"
+              }
+            },
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Pet not found"
+            },
+            "405": {
+              "description": "Validation exception"
+            }
+          },
+          "security": [
+            {
+              "item_jwt_auth": [ ]
+            }
+          ]
+        }
+      },
+      
+      "/items/show/{itemId}": {
+        "get": {
+          "tags": [
+            "Items"
+          ],
+          "summary": "Find item by ID",
+          "description": "Returns a single item by ID",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "itemId",
+              "in": "path",
+              "description": "ID of item to return",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Item selected",
+              "schema": {
+                "$ref": "#/definitions/Item"
+              }
+            },
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Item not found"
+            }
+          },
+          "security": [
+            {
+              "item_jwt_auth": [ ]
+            }
+          ]
+        }
+      },
+      "/items/delete/{itemId}": {
+        "delete": {
+          "tags": [
+            "Items"
+          ],
+          "summary": "Deletes an item",
+          "description": "Deletes an item from the database",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "itemId",
+              "in": "path",
+              "description": "Item id to delete",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Item deleted",
+              "schema": {
+                "$ref":"#/definitions/Items"
+              }
+            },
+            "400": {
+              "description": "Invalid ID supplied"
+            },
+            "404": {
+              "description": "Item not found"
+            }
+          },
+          "security": [
+            {
+              "item_jwt_auth": [ ]
+            }
+          ]
+        }
+      },
+      "/auth/register": {
+        "post": {
+          "tags": [
+            "user"
+          ],
+          "summary": "Create user",
+          "description": "This can only be done by the logged in user.",
+          "operationId": "createUser",
+          "produces": [
+            "application/xml",
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Created user object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          }
+        }
+      },
+      "/auth/login": {
+        "post": {
+          "tags": [
+            "user"
+          ],
+          "summary": "Logs user into the system",
+          "description": "",
+          "operationId": "loginUser",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Created user object",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "successful operation",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "Invalid username/password supplied"
+            }
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "item_jwt_auth": {
+        "type": "apiKey",
+        "in": "header",
+        "name":"x-access-token"
+      }
+    },
+    "definitions": {
+      "Item": {
+        "type": "object",
+        "required": [
+          "name",
+          "quantity"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "example": "item0"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int64",
+            "description": "item quantity"
+          }
+        }
+      },
+      "Items":{
+        "type":"array",
+        "$ref":"#/definitions/Item"
+
+      },
+      "User": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "example": "item0"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          },
+          "email": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum":["USER","ADMIN"]
+          }
+        }
+      }
+    }
+  }

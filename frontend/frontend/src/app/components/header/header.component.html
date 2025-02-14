@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Importe os estilos do Bootstrap ou adicione seu próprio CSS personalizado -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+   
+      <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom" style="background-color: rgb(199, 199, 203);">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap"></use>
+            </svg>
+            <span class="fs-4"><a href="/events-list">MachadoTickets</a></span>
+
+        </a>
+
+        <!-- Seus elementos de cabeçalho -->
+        <ul class="nav">
+          <li class="nav-item"><a href="/events-list" class="nav-link">Comprar Bilhetes</a></li>
+          <li class="nav-item"><a href="/user-details" class="nav-link">Perfil</a></li>
+          <li class="nav-item"><a href="#" class="nav-link" (click)="logout()">Log Out</a></li>
+        </ul>
+      </header>
+    
+    <!-- Resto do seu conteúdo -->
+    
+    <!-- Importe os scripts do Bootstrap se necessário -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div style="width: 75%; height: 100%; margin: 0 auto;">
+    <table class="table table-striped table-bordered table-sm">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price kid</th>
+          <th>Price Adult</th>
+          <th>Price Old</th>
+          <th>Events</th>
+          <th>EventsId</th>
+          <th>Price Total</th>
+          <th>ADM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets">
+          <td>{{ ticket.name }}</td>
+          <td>{{ ticket.pkid }}</td>
+          <td>{{ ticket.padult }}</td>
+          <td>{{ ticket.pold }}</td>
+          <td>{{ ticket.events }}</td>
+          <td>{{ ticket.eventsId }}</td>
+          <td>{{ ticket.ptotal }}</td>
+          <td>{{ ticket.adm }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Defina as colunas da tabela -->
+  <ng-container matColumnDef="NomeEvento">
+    <th mat-header-cell *matHeaderCellDef>Nome do Evento</th>
+    <td mat-cell *matCellDef="let item">{{ item.NomeEvento }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Preço</th>
+    <td mat-cell *matCellDef="let item">{{ item.price }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantityk">
+    <th mat-header-cell *matHeaderCellDef>Quantidade Kids</th>
+    <td mat-cell *matCellDef="let item">{{ item.quantityk }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantitya">
+    <th mat-header-cell *matHeaderCellDef>Quantidade Adults</th>
+    <td mat-cell *matCellDef="let item">{{ item.quantitya }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantityo">
+    <th mat-header-cell *matHeaderCellDef>Quantidade Olds</th>
+    <td mat-cell *matCellDef="let item">{{ item.quantityo }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let item">{{ item.id }}</td>
+  </ng-container>
+
+  <!-- Defina as colunas exibidas na tabela -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
+  <button style="padding: 10px 20px; font-size: 16px;" (click)="onCheckout()">Fazer Checkout</button>
+</div>

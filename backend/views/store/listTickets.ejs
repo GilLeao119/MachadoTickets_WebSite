@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>MachadoTickets</title>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+      <link rel='stylesheet' href='/stylesheets/style.css' />
+      <script>
+      $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+      </script>
+  </head>
+  <body>
+    <%- include('../header.ejs')%>
+<div class="container-xl">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2><b>Tickets Details</b></h2></div>
+                    <div class="col-sm-4">
+                      <button class="btn btn-primary" style="margin-left: 1px;float: right;"><a href="../" style="color: white;">Go Home</a></button>
+                      <button class="btn btn-primary" style="margin-left: 1px;float: right;"><a href="/store/list" style="color: white;">Buy ticket</a></button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            
+                <% if(store.length>0) {  var count = 0;%>
+                    <% for(var i=0; i<store.length;i++) {%>
+                        <% if(store[i].name !== "") { count++;}}%>
+                     <%if(count!=0){ %>
+            <table class="table table-striped table-hover ">
+                <thead>
+                    <tr>
+                        <th>Name </th>
+                        <th>Event</th>
+                        <th>User</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                <% for(var i=0; i<store.length;i++) { %>
+                    <% if(store[i].name !== "") { %>
+                    <tr>
+                    <td><%= store[i].name%></td>
+                        <td><%= store[i].events%></td>
+              <td><%= store[i].adm%></td>
+                        <td>
+                            <a href="/store/show/<%= store[i]._id%>" class="view" title="" data-toggle="tooltip" data-original-title="View"><i class="material-icons"></i></a>
+                        </td> <td>
+                            <a href="/store/edit/<%= store[i]._id%>" class="edit" title="" data-toggle="tooltip" data-original-title="Edit"><i class="material-icons"></i></a>
+                          </td> <td>
+                            <form action="/store/delete/<%= store[i]._id%>" method="post">
+                              <button type="submit" style="border: none;background-color: transparent;">
+                                <a class="delete" title="" data-toggle="tooltip" data-original-title="Delete"><i class="material-icons"></i></a>
+                              </button>
+                            </form>
+                          </td>
+                        </td>
+                    </tr>
+                    <% }} %>
+                </tbody>
+            </table>
+            
+            <% } else { %>
+        <div>No tickets found.</div>
+      <% }}else{%>
+        <div>No tickets found.</div>
+        <% } %>
+        </div>
+    </div>  
+</div>
+  </body>
+</html>
+
+

@@ -1,0 +1,23 @@
+.item-form>label, .item-form>input {
+    display: block;
+    width: 100%;
+    border-top: 0;
+    border-right: 0px;
+    border-left: 0px;
+    padding: 10px 0px 10px 0px;
+}
+
+.item-form>input:focus {
+    outline: none;
+}
+
+.item-button {
+    display: block;
+    margin: 30px auto;
+    height: 3em;
+    width: 7em;
+}
+
+.text-center {
+    text-align: center;
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>MachadoTickets</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+      $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $('input[name="event"]').on('change', function() {
+          var eventValue = $(this).val();
+          if (eventValue === 'true') {
+            $('.price-table').show();
+          } else {
+            $('.price-table').hide();
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <%- include('../header.ejs')%>
+    <br /><br />
+    <div class="container-xl">
+      <div class="table-responsive">
+        <div class="table-wrapper">
+          <form action="/local/save" method="post">
+            <div class="mb-3">
+              <label class="form-label" for="latitude">latitude</label>
+              <input
+                type="text"
+                class="form-control"
+                name="latitude"
+                placeholder="latitude"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="longitude">longitude</label>
+              <input
+                type="text"
+                class="form-control"
+                name="longitude"
+                placeholder="longitude"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="true">Event</label>
+              <div class="form-check">
+                <label class="form-label" for="true">Yes</label>
+                <input type="radio" id="event" name="event" value="true" />
+                <label class="form-label" for="false">No</label>
+                <input
+                  type="radio"
+                  id="event"
+                  name="event"
+                  value="false"
+                  checked
+                />
+              </div>
+            </div>
+
+            <div class="mb-3 price-table" style="display: none;">
+              <label class="form-label">Prices</label>
+              <table class="table table-striped table-hover">
+                <tr style="text-align: center;">
+                  <th><label class="form-label" for="pkid">Kids</label></th>
+                  <th><label class="form-label" for="padult">Adults</label></th>
+                  <th><label class="form-label" for="pold">Olds</label></th>
+                  <th></th>
+                  <th><label class="form-label" for="maxTick">Max. Tickets</label></th>
+                </tr>
+                <tr>
+                  <th>
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="text-align: center;"
+                      name="pkid"
+                      value="0"
+                      step="0.01"
+                      min="0"
+                      required
+                    />
+                  </th>
+                  <th>
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="text-align: center;"
+                      name="padult"
+                      value="0"
+                      step="0.01"
+                      min="0"
+                      required
+                    />
+                  </th>
+                  <th>
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="text-align: center;"
+                      name="pold"
+                      value="0"
+                      step="0.01"
+                      min="0"
+                      required
+                    />
+                  </th>
+                  <th colspan="2">
+                    <input
+                      type="number"
+                      class="form-control"
+                      style="text-align: center;"
+                      name="maxTick"
+                      value="50"
+                      min="1"
+                      required
+                    />
+                  </th>
+                </tr>
+              </table>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+          <br /><br />
+          <button class="btn btn-primary">
+            <a href="/local/list" style="color: white">Locals List</a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<app-header></app-header>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<div class="container-xl">
+  <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-12"><h2><b>Event Details</b></h2></div> 
+                </div>
+            </div>
+<div id="eventTable" *ngIf="object1.eventos">
+  <h1 class="text-center">Events list</h1>
+  <table datatable class="row-border hover" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+    <thead>
+      <tr>
+        <th>nome de evento</th>
+        <th></th>
+        <th>data de inicio</th>
+        <th>data de fim</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let evento of object1.eventos">
+        <td>{{ evento.name }}</td>
+        <td><app-image-event [eventId]="evento._id"></app-image-event></td>
+        <td>{{ evento.datainicio }} {{ evento.horainicio }}</td>
+        <td>{{ evento.datafim }} {{ evento.horafim }}</td>
+        <td><button (click)="view(evento._id)"><i class="material-icons"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  </div></div>
